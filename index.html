@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Тест на возраст</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        .dialog-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .dialog-box.show {
+            opacity: 1;
+        }
+        .dialog-wrapper {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border-radius: 10px;
+            max-width: calc(100vw - 40px);
+        }
+        .dialog-wrapper h2 {
+            margin-top: 0;
+        }
+        .dialog-wrapper p {
+            margin-bottom: 20px;
+        }
+        .dialog-wrapper button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background: #1abc9c;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .dialog-wrapper button:hover {
+            background: #16a085;
+        }
+        .dialog-box.success {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://media.giphy.com/media/QDRJ6IJzFSR1K/giphy.gif') no-repeat center center fixed;
+            background-size: contain;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dialog-box.success h1 {
+            font-size: 5rem;
+            color: #fff;
+            text-shadow: 0px 0px 10px rgba(0,0,0,0.7);
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 0;
+        }
+        .dialog-box.success p {
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 0px 0px 10px rgba(0,0,0,0.7);
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="dialog-box">
+    <div class="dialog-wrapper">
+        <h2>Вам исполнилось 39?</h2>
+        <button id="yes">Да</button>
+        <button id="no">Нет</button>
+    </div>
+</div>
+
+<script>
+    let dialog = document.querySelector('.dialog-box');
+    let body = document.querySelector('body');
+    let yesBtn = document.querySelector('#yes');
+    let noBtn = document.querySelector('#no');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        dialog.classList.add('show');
+    });
+
+    yesBtn.addEventListener('click', function() {
+        dialog.innerHTML = '<h1 style="text-align: center; margin-left: 10px; margin-right: 10px; color: black">Поздравляем!</h1><p>Вы нашли котика!</p>';
+        dialog.classList.add('success');
+    });
+
+    noBtn.addEventListener('click', function() {
+        let wrapper = dialog.querySelector('.dialog-wrapper');
+        wrapper.innerHTML = '<h2>Это не правда!</h2><p>Попробуйте еще раз</p>';
+    });
+</script>
+</body>
+</html>
